@@ -1,0 +1,16 @@
+int a,b,c,max;
+max := -999;
+read ( a );
+read ( b );
+if ( a >= b and a >= c ) then :
+{
+max := a;
+}
+if ( b >= a and b >= c )
+{
+max := b;
+}
+if ( c >= a and c >= a ) {
+max := a;
+}
+write ( max );

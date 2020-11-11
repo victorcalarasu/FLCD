@@ -18,10 +18,15 @@ public class Main {
 
             if (input == 2)
             {
+                System.out.println(faReader.getInitialState().toString());
+            }
+
+            if (input == 3)
+            {
                 System.out.println(faReader.getAlphabet().toString());
             }
 
-            if (input == 3 )
+            if (input == 4 )
             {
                 for(Object o : faReader.getTransitions().entrySet())
                 {
@@ -29,7 +34,7 @@ public class Main {
                 }
             }
 
-            if (input == 4)
+            if (input == 5)
             {
                 System.out.println(faReader.getFinal().toString());
             }
@@ -41,9 +46,10 @@ public class Main {
     public static void printMenu(){
         System.out.println("0. Exit.");
         System.out.println("1. Display states.");
-        System.out.println("2. Display alphabet.");
-        System.out.println("3. Display transitions.");
-        System.out.println("4. Display final states.");
+        System.out.println("2. Display initial states");
+        System.out.println("3. Display alphabet.");
+        System.out.println("4. Display transitions.");
+        System.out.println("5. Display final states.");
 
     }
 }

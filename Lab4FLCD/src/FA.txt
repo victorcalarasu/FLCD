@@ -1,10 +1,14 @@
-p q r
+p q r s t
 p
-a b c
-p a p
-p a q
-p q b
-p c r
-q b q
-q c r
-r
+a b
+p a s
+p a t
+s a s
+s b s
+p b q
+q a t
+t a t
+t b t
+q b r
+r b r
+s t

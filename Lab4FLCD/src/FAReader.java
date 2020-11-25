@@ -10,7 +10,7 @@ public class FAReader {
     private Set<String> States = new HashSet<>();
     private Set<String> InitialState= new HashSet<>();
     private Set<String> Alphabet = new HashSet<>();
-    private Map<Pair<String,String>,String> Transitions = new HashMap<>();
+    private MultiMap<Pair<String,String>,String> Transitions = new MultiMap<>();
     private Set<String> Final= new HashSet<>();
 
 
@@ -22,7 +22,7 @@ public class FAReader {
     public Set<String> getStates(){return this.States;}
     public Set<String> getInitialState(){return this.InitialState;}
     public Set<String> getAlphabet(){return this.Alphabet;}
-    public Map<Pair<String,String>,String> getTransitions(){return this.Transitions;}
+    public MultiMap<Pair<String,String>,String> getTransitions(){return this.Transitions;}
     public Set<String> getFinal(){return this.Final;}
 
     public void scan()
@@ -54,4 +54,42 @@ public class FAReader {
         }
 
     }
+
+    public boolean isDeterministic(){
+        for (Pair<String,String> pair: Transitions.keySet()){
+            if(Transitions.get(pair).size() > 1)
+                return false;
+        }
+        return true;
+    }
+
+    public boolean isAccepted(String sequence){
+        Iterator iterator = getInitialState().iterator();
+        String currentState = (String) iterator.next();
+        while (!sequence.isEmpty()){
+            boolean ok = false;
+            System.out.println(sequence + "   " + currentState);
+            for(Pair<String , String> pair: Transitions.keySet()){
+                if(pair.getLeft().equals(currentState) && pair.getRight().equals(String.valueOf(sequence.charAt(0)))){
+                    ok = true;
+                    currentState = String.join("" ,Transitions.get(pair));
+                    sequence = sequence.substring(1);
+                    break;
+                }
+            }
+            if(!ok)
+                return false;
+        }
+        boolean finalStateCheck = false;
+        for(String finalState : getFinal()){
+            if (finalState.equals(currentState)) {
+                finalStateCheck = true;
+                break;
+            }
+        }
+
+        return finalStateCheck;
+        }
+
+
 }

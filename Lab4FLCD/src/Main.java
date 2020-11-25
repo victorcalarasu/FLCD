@@ -38,6 +38,20 @@ public class Main {
             {
                 System.out.println(faReader.getFinal().toString());
             }
+
+            if (input ==6 )
+            {
+                if (!faReader.isDeterministic()){
+                    System.out.println("Not deterministic");
+                }
+                else{
+                    System.out.println("Give a sequence");
+                    String sequence = scanner.next();
+                    if(faReader.isAccepted(sequence))
+                        System.out.println(sequence + " is accepted");
+                    else System.out.println(sequence + " is not accepted");
+                }
+            }
             printMenu();
             input=scanner.nextInt();
         }
@@ -50,6 +64,7 @@ public class Main {
         System.out.println("3. Display alphabet.");
         System.out.println("4. Display transitions.");
         System.out.println("5. Display final states.");
+        System.out.println("6. Check if a sequence is accepted");
 
     }
 }
